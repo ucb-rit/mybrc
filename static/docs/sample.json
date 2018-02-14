@@ -1,0 +1,75 @@
+{"job": [
+	{
+		"JobNumber": 1232,
+	  	"JobSlurmID": 5332,
+	 	"SubmitDate": "2017-07-11T18:25:43.511Z",
+	  	"StartDate": "2017-07-12T14:21:42.515Z",
+	  	"EndDate": "2017-07-15T12:15:47.421Z",
+	  	"UserID": 12,
+	  	"AccountID": 2,
+	  	"Amount": 700,
+	  	"JobStatus": 3,
+	  	"Partition": 5,
+	  	"QOS": 123,
+	  	"Created": "2017-07-11T18:25:43.511Z",
+	  	"Updated": "2017-07-11T18:25:43.511Z"
+	}, {
+		"JobNumber": 1233,
+	  	"JobSlurmID": 5333,
+	 	"SubmitDate": "2017-07-11T18:25:43.511Z",
+	  	"StartDate": "2017-07-12T14:21:42.515Z",
+	  	"EndDate": "2017-07-15T12:15:47.421Z",
+	  	"UserID": 10,
+	  	"AccountID": 1,
+	  	"Amount": 700,
+	  	"JobStatus": 3,
+	  	"Partition": 5,
+	  	"QOS": 123,
+	  	"Created": "2017-07-11T18:25:43.511Z",
+	  	"Updated": "2017-07-11T18:25:43.511Z"
+	}],
+	
+"user": [
+	{
+		"UserID": 1232,
+		"Username": "Oski Bear",
+		"UserMetadata": "Unknown Content", 
+		"UserAllocation": 10000,
+		"UserBalance": 4900,
+		"Email": "oski@berkeley.edu",
+		"LDAPUID": "12388",
+		"Created": "2017-07-11T18:25:43.511Z",
+		"Updated": "2017-07-11T18:25:43.511Z"
+	}, {
+		"UserID": 1250,
+		"Username": "Heh",
+		"UserAllocation": 10000,
+		"UserBalance": 900,
+		"UserMetadata": "Unknown Content", 
+		"Email": "oski22@berkeley.edu",
+		"LDAPUID": "12390",
+		"Created": "2017-07-11T18:25:43.511Z",
+		"Updated": "2017-07-11T18:25:43.511Z"
+	}],
+
+"account": [
+	{
+		"AccountID": 32,
+		"AccountName": "bear",
+		"AccountAllocation": 900000,
+		"AccountBalance": 21388,
+		"Type": "fca",
+		"Description": "For the BEAR project",
+		"Created": "2017-07-11T18:25:43.511Z",
+		"Updated": "2017-07-11T18:25:43.511Z"
+	}, {
+		"AccountID": 20,
+		"AccountName": "wolf",
+		"AccountAllocation": 900000,
+		"AccountBalance": 250000,
+		"Type": "fca",
+		"Description": "For the WOLF project",
+		"Created": "2017-07-11T18:25:43.511Z",
+		"Updated": "2017-07-11T18:25:43.511Z"	
+	}]
+}
