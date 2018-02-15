@@ -25,3 +25,6 @@ May first need to migrate new changes
 	$ python manage.py migrate 
 ```
 
+#### To Do 
+
+Create <b>services.py</b> and <b>views.py</b> for each page. Will be located within each dir - <i>e.g. su_calculator/</i>.
