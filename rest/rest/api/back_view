@@ -1,0 +1,87 @@
+from django.shortcuts import render
+from django.shortcuts import get_object_or_404
+from .models import *
+from .serializers import UserSerializer, AccountSerializer, JobSerializer
+from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework import mixins
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet for /api/users/
+    """
+
+    def list(self, reques, *args, **kwargs):
+        """
+        List users.
+        """
+
+        queryset = self.filter_queryset(
+            User.objects.order_by('userid')
+        )
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = UserSerializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = UserSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        """
+        Get one user.
+        """
+
+        queryset = User.objects.all()
+        user = get_object_or_404(queryset, pk=pk)
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+
+class JobViewSet(viewsets.ViewSet):
+    """
+    ViewSet for /api/jobs/
+    """
+
+    def list(self, request):
+        """
+        List jobs.
+        """
+
+        queryset = Job.objects.all()
+        serializer = JobSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        """
+        Get one Job.
+        """
+
+        queryset = Job.objects.all()
+        job = get_object_or_404(queryset, pk=pk)
+        serializer = JobSerializer(job)
+        return Response(serializer.data)
+
+class AccountViewSet(viewsets.ViewSet):
+    """
+    ViewSet for /api/accounts/
+    """
+
+    def list(self, request):
+        """
+        List Accounts.
+        """
+
+        queryset = Account.objects.all()
+        serializer = AccountSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        """
+        Get one Account.
+        """
+
+        queryset = Account.objects.all()
+        account = get_object_or_404(queryset, pk=pk)
+        serializer = AccountSerializer(account)
+        return Response(serializer.data)
