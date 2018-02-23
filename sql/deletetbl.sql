@@ -1,0 +1,2 @@
+USE test;
+DROP TABLE IF EXISTS user;
