@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load new_app_tags %}
 {% load static %}
 
 {% block head %}
@@ -6,24 +7,59 @@
 {% endblock %}
 
 {% block body %}
-	<div id="your-notif">
-		<div class="list-group" id="le-message">
-			<a href="#" class="list-group-item" id="notif-header">
-			<p class="list-group-item-heading" id="header-yn">Your Notifications</p></a>
-			{% if messages %}
-				{% for m in messages %}
-					<a href="#" class="list-group-item">
-					<p{% if m.tags %} class="list-group-item-heading" {% endif %}> {{ m }}</p>
-					<p class="list-group-item-text">Display date</p></a>
-				{% endfor %}
-			{% endif %}
-		</div>
-	</div>
-
-	<div id="account-notif">
-		<div class="list-group" id="le-message">
-			<a href="#" class="list-group-item" id="notif-header">
-			<p class="list-group-item-heading" id="header-yn">Account Notifications</p></a>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<div id="your-notif">
+					<div class="list-group" id="le-message">
+						<a href="#" class="list-group-item" id="notif-header">
+						<p class="list-group-item-heading" id="header-yn"><b>Your Notifications</b></p></a>
+						{% if messages %}
+							{% for m in messages %}
+								<!--p>acc_id = m['acc_id'] 
+								acc_time = m['acc_time'] </p-->
+								<a href="#" class="list-group-item">
+								<!--p{% if m.tags %} class="list-group-item-heading" {% endif %}> Display count: {{ acc_id }}</p>
+								<p class="list-group-item-text">Display date: {{ acc_time }}</p></a-->
+								<p class="list-group-item-text">Account ID: <b id="i_acc_id">{{ acc_id }}</b></p>
+								<p class="list-group-item-text">Account name: <b id="i_acc_name">{{ acc_name }}</b></p>
+								<p class="list-group-item-text">Date updated: <b id="i_acc_date">{{ acc_time }}</b></p></a>
+								<script type="text/javascript">
+									var message_js = {{ m | safe }};
+									/*document.getElementById("i_acc_id").innerHTML = message_js.acc_id;
+									document.getElementById("i_acc_name").innerHTML = message_js.acc_name;
+									document.getElementById("i_acc_date").innerHTML = message_js.acc_time;*/
+								</script>
+							{% endfor %}
+						{% else %}
+							<a href="#" class="list-group-item">
+								<h5>No user account information available</h5>
+							</a>
+						{% endif %}
+					</div>
+				</div>
+				<div style="height: 100px;"></div>
+			</div>
+			<div class="col-md-4">
+				<div id="account-notif">
+					<div class="list-group" id="le-message">
+						<a href="#" class="list-group-item" id="notif-header">
+						<p class="list-group-item-heading" id="header-yn"><b>Account Notifications</b></p></a>
+						<a href="#" class="list-group-item">
+							<p class="list-group-item-heading">Project description: <b id="i_acc_desc">{{ acc_desc }}</b></p>
+							<div style="height: 30px;"></div>
+							<p class="list-group-item-heading">Account allocation: <b id="i_acc_alloc">{{ acc_alloc }}</b></p>
+							<p class="list-group-item-heading">Account allocation: <b id="i_acc_balance">{{ acc_balance }}</b></p>
+						</a>
+					</div>
+					<script type="text/javascript">
+						/* document.getElementById("i_acc_desc").innerHTML = message_js.acc_desc;
+						document.getElementById("i_acc_alloc").innerHTML = message_js.acc_alloc;
+						document.getElementById("i_acc_balance").innerHTML = message_js.acc_balance;*/
+					</script>
+				</div>
+			</div>
+			<div class="col-md-4"></div>
 		</div>
 	</div>
 
