@@ -8,7 +8,7 @@
 	    <meta name="description" content="Notification Center">
 	    <meta name="author" content="Cassie Zhang">
 
-		<title>{{ theTitle }}</title>
+		<title>{{ the_title }}</title>
 		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 		<link rel="stylesheet" href="{% static 'css/bootstrap-theme.css' %}">
 		<link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css">
@@ -179,7 +179,10 @@
 		<div id="thetitle"><h2>{{ theTitle }} </h2> </div>
 
 		<div>
-	        {% block body %}
+			{% block body %}
+				<!--div class="row">
+					<h2 style="margin-left: 150px">{{ the_title }}</h2>
+				</div-->
             {% endblock %}
 		</div>
 

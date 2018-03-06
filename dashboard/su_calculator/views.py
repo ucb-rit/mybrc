@@ -5,5 +5,5 @@ import os, os.path, json
 def su_calculator(request):
 	title = "Service Unit Calculator"
 
-	args = { 'theTitle': title }
+	args = { 'the_title': title }
 	return render(request, 'su_calculator.html', args)

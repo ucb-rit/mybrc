@@ -8,8 +8,7 @@ import requests
 # Create your views here.
 def notifications(request):    	
 
-	if request.GET:
-		print("request.GET: ", request.GET)
+	if request.GET: 
 		req_val = request.GET['sample_form']
 
 		url = 'http://128.3.7.72:8000/accounts' 

@@ -5,5 +5,5 @@ import os, os.path, json
 def quota_manager(request):
 	title = "Quota Manager"
 
-	args = { 'theTitle': title }
+	args = { 'the_title': title }
 	return render(request, 'quota_manager.html', args)

@@ -9,6 +9,9 @@
 {% block body %}
 	<div class="container">
 		<div class="row">
+			<h2 style="margin-left: 150px">{{ the_title }}</h2>
+		</div>
+		<div class="row">
 			<div class="col-md-4">
 				<div id="your-notif">
 					<div class="list-group le-message">
@@ -47,13 +50,34 @@
 							<p class="list-group-item-heading">Project description: <b id="i_acc_desc">{{ acc_desc }}</b></p>
 							<div style="height: 30px;"></div>
 							<p class="list-group-item-heading">Account allocation: <b id="i_acc_alloc">{{ acc_alloc }}</b></p>
-							<p class="list-group-item-heading">Account allocation: <b id="i_acc_balance">{{ acc_balance }}</b></p>
+							<p class="list-group-item-heading">Account balance: <b id="i_acc_balance">{{ acc_balance }}</b></p>
+							<div class="row" id="acc-warnings" style="display: none">
+								<div style="height: 50px"></div>
+								<div class="col-md-12 center-block">
+									<button style="display: none" id="acc_warning_btn" type="button" class="btn btn-warning center-block">Warning: <b id="acc_low"></b><b>%</b> of balance remaining.</button>
+									<button style="display: none" id="acc_out_btn" type="button" class="btn btn-danger center-block">Warning: Account is empty.</button>
+								</div>
+							</div>
 						</a>
 					</div>
 					<script type="text/javascript">
 						/* document.getElementById("i_acc_desc").innerHTML = message_js.acc_desc;
 						document.getElementById("i_acc_alloc").innerHTML = message_js.acc_alloc;
 						document.getElementById("i_acc_balance").innerHTML = message_js.acc_balance;*/
+						var check_balance = {{ acc_balance }};
+						var org_alloc = {{ acc_alloc }};
+						var check_ratio = check_balance / org_alloc; 
+
+						if (check_balance <= 0) {
+							document.getElementById("acc-warnings").style.display = "block";
+							document.getElementById("acc_out_btn").style.display = "block"; 
+						} else if (check_ratio <= 0.1) {
+							document.getElementById("acc-warnings").style.display = "block";
+							document.getElementById("acc_warnings_btn").style.display = "block";
+							document.getElementById("acc_low").innerHTML = (check_ratio * 100);
+						} else {
+							document.getElementById("acc_warnings").style.display = "none";
+						}
 					</script>
 				</div>
 			</div>
