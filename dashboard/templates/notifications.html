@@ -12,6 +12,31 @@
 			<h2 style="margin-left: 150px">{{ the_title }}</h2>
 		</div>
 		<div class="row">
+			<div class="col-md-8">
+				{% if acc_perc == 0 %}
+					<div class="alert alert-warning alert-dismissible" style="margin-left: 140px">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close" style="top: 4px">&times;</a>
+						<h5><strong>Warning:</strong> account balance is {{ acc_perc }}%</h5>
+					</div>
+					<!--div class="panel panel-default" style="margin-left: 140px;">
+						<div class="panel-body" style="text-align: center; background-color: rgba(109, 109, 109, 0.253);">
+							<h4 style="padding-left: 0px">Warning: account balance is {{ acc_perc }}</h4>
+						</div>
+					</div-->
+				{% elif bad_submit == "true" %}
+					<div class="alert alert-danger alert-dismissible" style="margin-left: 140px">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close" style="top: 4px">&times;</a>
+						<h5><strong>Error:</strong> Please enter a valid account</h5>
+					</div>
+					<!--div class="panel panel-default" style="margin-left: 140px;">
+						<div class="panel-body" style="text-align: center; background-color: rgba(109, 109, 109, 0.253);">
+							<h4 style="padding-left: 0px">Error: Please enter a valid account</h4>
+						</div>
+					</div-->
+				{% endif %} 
+			</div>
+		</div>
+		<div class="row">
 			<div class="col-md-4">
 				<div id="your-notif">
 					<div class="list-group le-message">
@@ -26,12 +51,6 @@
 						<p class="list-group-item-text">Account ID: <b id="i_acc_id">{{ acc_id }}</b></p>
 						<p class="list-group-item-text">Account name: <b id="i_acc_name">{{ acc_name }}</b></p>
 						<p class="list-group-item-text">Date updated: <b id="i_acc_date">{{ acc_time }}</b></p></a>
-						<script type="text/javascript">
-							/*var message_js = { { message | safe } };
-							document.getElementById("i_acc_id").innerHTML = message_js.acc_id;
-							document.getElementById("i_acc_name").innerHTML = message_js.acc_name;
-							document.getElementById("i_acc_date").innerHTML = message_js.acc_time;*/
-						</script>
 						{% else %}
 							<a href="#" class="list-group-item">
 								<h5>No user account information available</h5>
@@ -60,36 +79,22 @@
 							</div>
 						</a>
 					</div>
-					<script type="text/javascript">
-						/* document.getElementById("i_acc_desc").innerHTML = message_js.acc_desc;
-						document.getElementById("i_acc_alloc").innerHTML = message_js.acc_alloc;
-						document.getElementById("i_acc_balance").innerHTML = message_js.acc_balance;*/
-						var check_balance = {{ acc_balance }};
-						var org_alloc = {{ acc_alloc }};
-						var check_ratio = check_balance / org_alloc; 
-
-						if (check_balance <= 0) {
-							document.getElementById("acc-warnings").style.display = "block";
-							document.getElementById("acc_out_btn").style.display = "block"; 
-						} else if (check_ratio <= 0.1) {
-							document.getElementById("acc-warnings").style.display = "block";
-							document.getElementById("acc_warnings_btn").style.display = "block";
-							document.getElementById("acc_low").innerHTML = (check_ratio * 100);
-						} else {
-							document.getElementById("acc_warnings").style.display = "none";
-						}
-					</script>
 				</div>
 			</div>
 			<div class="col-md-4"></div>
 		</div>
 		<div class="row">
 			<div class="col-md-8">
+				<div class="panel panel-default" id="bad-acc-btn" style="display: none; margin-left: 140px;">
+					<div class="panel-body" style="text-align: center;">
+						<h3 style="padding-left: 0px">Please enter a valid account</h3>
+					</div>
+				</div>
 				<div class="le-message">
 					<h4>Search for an account:</h4>
 					<div style="height: 30px;"></div>
 					<form action="" method="get">
-						<input type="text" name="sample_form" value="">
+						<input type="text" name="search_account" value="">
 						<input class="btn btn-primary" type="submit" value="search">
 					</form>
 				</div>
@@ -97,6 +102,20 @@
 			<div class="col-md-4"></div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		var check_submit = {{ bad_submit }};
+		console.log("check_submit: ", check_submit);
+
+		if (check_submit == true) {
+			// document.getElementById("bad-acc-btn").style.display = "block";
+		} else {
+			document.getElementById("bad-acc-btn").style.display = "none";
+			var check_balance = {{ acc_balance }};
+			var org_alloc = {{ acc_alloc }};
+			var check_ratio = check_balance / org_alloc; 
+		}
+ 
+	</script>
 
 <!--
 <div class=bs-example data-example-id=list-group-custom-content>
