@@ -24,11 +24,25 @@ def get(get_idx = 0):
     #vpn_return = {'count' : vpn['results'][0]['accountid'],
     #            'results' : vpn['results']}
 
-    print("\nvpn_return")
-    print("acc_id: ", acc_id)
-    print("\nacc_time: ", acc_time)
-    #print("vpn_return['count']: ", vpn_return['count'])
-    #print("vpn_return['results']: ", vpn_return['results'][0])
-    print("-------------------\n")
-
     return vpn_return
+
+def get_local_json():
+    """
+    Get local JSON file stored in: 'static/sample_data/users.json'
+    """
+
+    ## Read in local json file 
+    js_data = open("./static/sample_data/users.json")
+    js_load = json.load(js_data)
+    #js_dump = json.dumps(js_data)
+    js_data.close()
+
+    users_json = js_load['results'][0]
+
+    json_return = {'acc_id' : users_json['userid'],
+                    'acc_alloc' : users_json['allocation'],
+                    'acc_njobs' : users_json['number-jobs'],
+                    'acc_njobs_sub' : users_json['number-jobs-submitted'],
+                    'acc_njobs_end' : users_json['number-jobs-ended']}
+
+    return json_return

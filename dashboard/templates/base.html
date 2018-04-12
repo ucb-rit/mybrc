@@ -191,11 +191,19 @@
 		function openNav() {
 			document.getElementById("id-admin-side").style.width = "350px";
 			document.body.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+			document.getElementById("le-message-left").style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+			document.getElementById("le-message-left-low").style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+			document.getElementById("le-message-right").style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+			document.getElementById("le-message-right-low").style.backgroundColor = "rgba(0, 0, 0, 0.2)";
 		}
 
 		function closeNav() {
 			document.getElementById("id-admin-side").style.width = "0";
 			document.body.style.backgroundColor = "white";
+			document.getElementById("le-message-left").style.backgroundColor = "white";
+			document.getElementById("le-message-left-low").style.backgroundColor = "white";
+			document.getElementById("le-message-right").style.backgroundColor = "white";
+			document.getElementById("le-message-right-low").style.backgroundColor = "white";
 		}
 
 		$(document).ready(function(){

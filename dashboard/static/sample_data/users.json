@@ -8,24 +8,8 @@
             "allocation": 10000,
             "number-jobs": 5,
             "number-jobs-submitted": 5,
-            "number-jobs-ended": 4,
+            "number-jobs-ended": 4
             
         }
     ]
 }
-
-    "results": [
-        {
-            "accountid": 1,
-            "users": [
-                1,
-                4
-            ],
-            "accountname": "fc_hasan",
-            "accountallocation": 1000000,
-            "accountbalance": 1000000,
-            "type": "FCA",
-            "description": "Research of potatoes",
-            "created": "2017-11-18T20:39:16Z",
-            "updated": "2017-11-18T20:39:16Z"
-        },

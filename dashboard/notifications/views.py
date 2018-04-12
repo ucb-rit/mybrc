@@ -8,7 +8,14 @@ import requests
 # Create your views here.
 def notifications(request): 
 
-	check_param = request.GET.get('search_account')  	
+	check_param = request.GET.get('search_account')
+
+	serv_get_json = services.get_local_json()
+
+	print("\n\n---------------")
+	print("Within notifications...")
+	print("serv_get_json: ", serv_get_json)
+	print("-------------------\n\n")
 
 	if check_param != None:
 		req_val = request.GET['search_account']
@@ -26,7 +33,6 @@ def notifications(request):
 			serv_get = services.get(int(req_val))
 			title = "Notification Center"
 			acc_perc = check_balance(serv_get['acc_balance'], serv_get['acc_alloc'])
-			print("\n\nacc_perc: ", acc_perc, "\n\n")
 			args = { 'the_title': title, 'acc_id': serv_get['acc_id'],
 						'acc_name': serv_get['acc_name'], 
 						'acc_time': serv_get['acc_time'],
@@ -46,8 +52,24 @@ def notifications(request):
 						'acc_desc': "None",
 						'acc_alloc': 0,
 						'acc_balance': 0,
-						'bad_submit': 'true'}
+						'bad_submit': 'true',
+						'bad_message': 'Please search accounts by number (0 - 2).'}
 			return render(request, 'notifications.html', args)	
+
+		except IndexError:
+			print("\nIn the EXCEPT...")
+			print("Error: ", IndexError)
+			title = "Notification Center"
+			args = { 'the_title': title, 'acc_id': "None",
+						'acc_name': "None", 
+						'acc_time': 0,
+						'acc_desc': "None",
+						'acc_alloc': 0,
+						'acc_balance': 0,
+						'bad_submit': 'true',
+						'bad_message': 'Please search accounts by numbers between 0 - 2.'}
+			return render(request, 'notifications.html', args)
+
 	else:
 
 		title = "Notification Center"
@@ -87,14 +109,4 @@ class getCount:
 		count = services.get()
 		return render(request, 'notifications.html', count)
 
-"""class getCount:
-    def get():
-        count = services.get()
-
-		print("")
-		print("count: ", count)
-		print("")
-
-        return render(request, 'notifications.html', count)
-"""
 

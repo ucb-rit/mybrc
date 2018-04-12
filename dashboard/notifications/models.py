@@ -12,7 +12,7 @@ class Job(models.Model):
 	job_data = data["job"]
 
 class User(models.Model):
-	user_data= data["user"]
+	user_data = data["user"]
 
 class Account(models.Model):
 	account_data = data["account"]
