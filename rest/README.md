@@ -153,7 +153,7 @@ X-Frame-Options: SAMEORIGIN
 
 **TODO: Add a `"success": true` field to this response.**
 
-See the database schema picture for the fields' types in the database (which are translated back and forth to JSON and validated by [ModelSerializer](http://www.django-rest-framework.org/api-guide/serializers/#modelserializer)).
+See the [database schema picture](./docs/db-schema.png) for the fields' types in the database (which are translated back and forth to JSON and validated by [ModelSerializer](http://www.django-rest-framework.org/api-guide/serializers/#modelserializer)).
 
 Failure (400 Bad Request):
 
@@ -365,7 +365,7 @@ X-Frame-Options: SAMEORIGIN
 
 **TODO: Add a `"success": true` field to this response.**
 
-Again, see the database schema picture for the fields' types in the database (which are translated back and forth to JSON and validated by [ModelSerializer](http://www.django-rest-framework.org/api-guide/serializers/#modelserializer)).
+Again, see the [database schema picture](./docs/db-schema.png) for the fields' types in the database (which are translated back and forth to JSON and validated by [ModelSerializer](http://www.django-rest-framework.org/api-guide/serializers/#modelserializer)).
 
 Failure (400 Bad Request):
 
@@ -555,7 +555,7 @@ X-Frame-Options: SAMEORIGIN
 
 **TODO: Add a `"success": true` field to this response.**
 
-Again, see the database schema picture for the fields' types in the database (which are translated back and forth to JSON and validated by [ModelSerializer](http://www.django-rest-framework.org/api-guide/serializers/#modelserializer)).
+Again, see the [database schema picture](./docs/db-schema.png) for the fields' types in the database (which are translated back and forth to JSON and validated by [ModelSerializer](http://www.django-rest-framework.org/api-guide/serializers/#modelserializer)).
 
 Failure (400 Bad Request):
 
