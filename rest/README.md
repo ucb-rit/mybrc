@@ -245,7 +245,128 @@ Failure (401 Unauthorized):
 
 ### POST    /jobs
 
-Doesn't work right now for some reason, so skipping. Only used internally anyways, for the SLURM submit filter plugin.
+<pre>
+[benjaminzhang@phoenix ~]$ curl -i -X OPTIONS "http://128.3.7.72:8111/jobs/"
+
+HTTP/1.0 200 OK
+Date: Wed, 13 Jun 2018 00:43:00 GMT
+Server: WSGIServer/0.2 CPython/3.5.1
+Allow: GET, POST, HEAD, OPTIONS
+Content-Type: application/json
+Vary: Accept, Cookie
+Content-Length: 1560
+X-Frame-Options: SAMEORIGIN
+
+{
+    "name": "Job List",
+    "description": "ViewSet for /api/jobs/",
+    "renders": [
+        "application/json",
+        "text/html"
+    ],
+    "parses": [
+        "application/json",
+        "application/x-www-form-urlencoded",
+        "multipart/form-data"
+    ],
+    "actions": {
+        "POST": {
+            "jobnumber": {
+                "type": "integer",
+                "required": false,
+                "read_only": true,
+                "label": "Jobnumber"
+            },
+            <b>"jobslurmid": {
+                "type": "integer",
+                "required": true,
+                "read_only": false,
+                "label": "Jobslurmid",
+                "min_value": -2147483648,
+                "max_value": 2147483647
+            },
+            "submitdate": {
+                "type": "datetime",
+                "required": true,
+                "read_only": false,
+                "label": "Submitdate"
+            },</b>
+            "startdate": {
+                "type": "datetime",
+                "required": false,
+                "read_only": false,
+                "label": "Startdate"
+            },
+            "enddate": {
+                "type": "datetime",
+                "required": false,
+                "read_only": false,
+                "label": "Enddate"
+            },
+            <b>"userid": {
+                "type": "integer",
+                "required": true,
+                "read_only": false,
+                "label": "Userid",
+                "min_value": -2147483648,
+                "max_value": 2147483647
+            },
+            "accountid": {
+                "type": "integer",
+                "required": true,
+                "read_only": false,
+                "label": "Accountid",
+                "min_value": -2147483648,
+                "max_value": 2147483647
+            },
+            "amount": {
+                "type": "float",
+                "required": true,
+                "read_only": false,
+                "label": "Amount"
+            },
+            "jobstatus": {
+                "type": "integer",
+                "required": true,
+                "read_only": false,
+                "label": "Jobstatus",
+                "min_value": -2147483648,
+                "max_value": 2147483647
+            },
+            "partition": {
+                "type": "integer",
+                "required": true,
+                "read_only": false,
+                "label": "Partition",
+                "min_value": -2147483648,
+                "max_value": 2147483647
+            },
+            "qos": {
+                "type": "integer",
+                "required": true,
+                "read_only": false,
+                "label": "Qos",
+                "min_value": -32768,
+                "max_value": 32767
+            },</b>
+            "created": {
+                "type": "datetime",
+                "required": false,
+                "read_only": true,
+                "label": "Created"
+            },
+            "updated": {
+                "type": "datetime",
+                "required": false,
+                "read_only": true,
+                "label": "Updated"
+            }
+        }
+    }
+}
+</pre>
+
+Required values bolded.
 
 ## Users Class (Create-Read-Update-List)
 
@@ -444,7 +565,90 @@ Failure (401 Unauthorized):
 
 ### POST    /users
 
-Creates a user. No examples right now, but requires all fields except `created` and `updated`.
+<pre>
+[benjaminzhang@phoenix ~]$ curl -i -X OPTIONS "http://128.3.7.72:8111/users/"
+
+HTTP/1.0 200 OK
+Date: Thu, 14 Jun 2018 23:32:29 GMT
+Server: WSGIServer/0.2 CPython/3.5.1
+Allow: GET, POST, HEAD, OPTIONS
+Content-Type: application/json
+Vary: Accept, Cookie
+Content-Length: 945
+X-Frame-Options: SAMEORIGIN
+
+{
+    "name": "User List",
+    "description": "ViewSet for /api/users/",
+    "renders": [
+        "application/json",
+        "text/html"
+    ],
+    "parses": [
+        "application/json",
+        "application/x-www-form-urlencoded",
+        "multipart/form-data"
+    ],
+    "actions": {
+        "POST": {
+            "userid": {
+                "type": "integer",
+                "required": false,
+                "read_only": true,
+                "label": "Userid"
+            },
+            "accounts": {
+                "type": "field",
+                "required": false,
+                "read_only": true,
+                "label": "Accounts"
+            },
+            <b>"username": {
+                "type": "string",
+                "required": true,
+                "read_only": false,
+                "label": "Username",
+                "max_length": 20
+            },
+            "usermetadata": {
+                "type": "string",
+                "required": true,
+                "read_only": false,
+                "label": "Usermetadata"
+            },
+            "email": {
+                "type": "string",
+                "required": true,
+                "read_only": false,
+                "label": "Email",
+                "max_length": 100
+            },
+            "ldapuid": {
+                "type": "integer",
+                "required": true,
+                "read_only": false,
+                "label": "Ldapuid",
+                "min_value": -2147483648,
+                "max_value": 2147483647
+            },</b>
+            "created": {
+                "type": "datetime",
+                "required": false,
+                "read_only": true,
+                "label": "Created"
+            },
+            "updated": {
+                "type": "datetime",
+                "required": false,
+                "read_only": true,
+                "label": "Updated"
+            }
+        }
+    }
+}
+</pre>
+
+Required values bolded.
 
 Returns 200 OK, 400 Bad Request (Invalid information), or 401 Unauthorized
 
@@ -633,7 +837,98 @@ Failure (401 Unauthorized):
 
 ### POST    /accounts
 
-Creates an account. No examples right now, but requires all fields except `created` and `updated`.
+<pre>
+[benjaminzhang@phoenix ~]$ curl -i -X OPTIONS "http://128.3.7.72:8111/accounts/"                                                                                                                            
+HTTP/1.0 200 OK
+Date: Tue, 12 Jun 2018 23:23:11 GMT
+Server: WSGIServer/0.2 CPython/3.5.1
+Allow: GET, POST, HEAD, OPTIONS
+Content-Type: application/json
+Vary: Accept, Cookie
+Content-Length: 1131
+X-Frame-Options: SAMEORIGIN
+
+{
+    "name": "Account List",
+    "description": "ViewSet for /api/accounts/",
+    "renders": [
+        "application/json",
+        "text/html"
+    ],
+    "parses": [
+        "application/json",
+        "application/x-www-form-urlencoded",
+        "multipart/form-data"
+    ],
+    "actions": {
+        "POST": {
+            "accountid": {
+                "type": "integer",
+                "required": false,
+                "read_only": true,
+                "label": "Accountid"
+            },
+            "users": {
+                "type": "field",
+                "required": false,
+                "read_only": true,
+                "label": "Users"
+            },
+            <b>"accountname": {
+                "type": "string",
+                "required": true,
+                "read_only": false,
+                "label": "Accountname",
+                "max_length": 50
+            },
+            "accountallocation": {
+                "type": "integer",
+                "required": true,
+                "read_only": false,
+                "label": "Accountallocation",
+                "min_value": -2147483648,
+                "max_value": 2147483647
+            },
+            "accountbalance": {
+                "type": "integer",
+                "required": true,
+                "read_only": false,
+                "label": "Accountbalance",
+                "min_value": -2147483648,
+                "max_value": 2147483647
+            },
+            "type": {
+                "type": "string",
+                "required": true,
+                "read_only": false,
+                "label": "Type",
+                "max_length": 10
+            },
+            "description": {
+                "type": "string",
+                "required": true,
+                "read_only": false,
+                "label": "Description",
+                "max_length": 150
+            },</b>
+            "created": {
+                "type": "datetime",
+                "required": false,
+                "read_only": true,
+                "label": "Created"
+            },
+            "updated": {
+                "type": "datetime",
+                "required": false,
+                "read_only": true,
+                "label": "Updated"
+            }
+        }
+    }
+}
+</pre>
+
+Required values bolded.
 
 Returns 200 OK, 400 Bad Request (Invalid information), or 401 Unauthorized
 
