@@ -428,23 +428,9 @@ Failure (401 Unauthorized):
 
 ### GET    /users?accountid={id}                int
 
-### GET    /users?fullname={name}            string (fuzzy)
-
-### GET    /users?friendlyname={name}            string
-
-### GET    /users?saviorusername={name}        string (fuzzy)
+### GET    /users?saviousername={name}        string (fuzzy)
 
 ### GET    /users?email={email}                string
-
-### GET    /users?minbalance={amount_su_%}        float
-
-### GET    /users?maxbalance={amount_su_%}        float
-
-### GET    /users?isactive={boolean}            boolean
-
-### GET    /users?minquota={amount_su}        int
-
-### GET    /users?maxquota={amount_su}        int
 
 ### GET    /users?created={date}                ISO_date_utc
 
