@@ -62,17 +62,21 @@ Failure (401 Unauthorized):
 
 ---
 
+### GET    /jobs?slurmjobid={id}            int
+
 ### GET    /jobs?userid={id}                int
 
 ### GET    /jobs?accountid={id}                int
 
 ### GET    /jobs?status={id}                int
 
-### GET    /jobs?maxsu={amount_su}            int
-
-### GET    /jobs?minsu={amount_su}            int
+### GET    /jobs?amount={amount}            float
 
 ### GET    /jobs?partition={id}                int
+
+### GET    /jobs?qos={id}                      int
+
+### GET    /jobs?submitdate={date}              ISO_date_utc
 
 ### GET    /jobs?startdate={date}                ISO_date_utc
 
