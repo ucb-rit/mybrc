@@ -50,18 +50,34 @@ class UserViewSet(FiltersMixin, viewsets.ModelViewSet):
         serializer = UserSerializer(user)
         return Response(serializer.data)
 
-class JobViewSet(viewsets.ModelViewSet):
+class JobViewSet(FiltersMixin, viewsets.ModelViewSet):
     """
     ViewSet for /api/jobs/
     """
     queryset = Job.objects.all()
     serializer_class = JobSerializer
 
+    filter_mappings = {
+        'jobslurmid': 'jobslurmid',
+        'userid': 'userid',
+        'accountid': 'accountid',
+        'status': 'jobstatus',
+        'amount': 'amount',
+        'partition': 'partition',
+        'qos': 'qos',
+        'submitdate': 'submitdate',
+        'startdate': 'startdate',
+        'enddate': 'enddate',
+        'created': 'created',
+        'updated': 'updated',
+    }
+
+
     def list(self, request):
         """
         List jobs.
         """
-        queryset = self.queryset
+        queryset = self.get_queryset().values_list("jobnumber", flat=True)
 
         page = self.paginate_queryset(queryset.values_list("jobnumber", flat=True))
         if page is not None:
@@ -77,7 +93,7 @@ class JobViewSet(viewsets.ModelViewSet):
         Get one Job.
         """
 
-        queryset = Job.objects.all()
+        queryset = self.queryset
         job = get_object_or_404(queryset, pk=pk)
         serializer = JobSerializer(job)
         return Response(serializer.data)
