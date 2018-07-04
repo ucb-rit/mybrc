@@ -32,9 +32,7 @@ class UserViewSet(FiltersMixin, viewsets.ModelViewSet):
         queryset = self.get_queryset().values_list("userid", flat=True)
 
         page = self.paginate_queryset(queryset)
-        if page is not None:
-#            serializer = self.get_serializer(page, many=True)
-            
+        if page is not None:            
             return self.get_paginated_response({'userid': page})
 
         serializer = self.get_serializer(queryset, many=True)
@@ -81,7 +79,6 @@ class JobViewSet(FiltersMixin, viewsets.ModelViewSet):
 
         page = self.paginate_queryset(queryset.values_list("jobnumber", flat=True))
         if page is not None:
-#            serializer = self.get_serializer(page, many=True)
             return self.get_paginated_response({'jobnumber': page})
 
         serializer = self.get_serializer(queryset, many=True)
