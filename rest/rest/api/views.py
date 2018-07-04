@@ -95,13 +95,21 @@ class JobViewSet(FiltersMixin, viewsets.ModelViewSet):
         serializer = JobSerializer(job)
         return Response(serializer.data)
 
-class AccountViewSet(viewsets.ModelViewSet):
+class AccountViewSet(FiltersMixin, viewsets.ModelViewSet):
     """
     ViewSet for /api/accounts/
     """
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
 
+    filter_mappings = {
+        'userid': 'users',
+        'accountname': 'accountname',
+        'allocation': 'accountallocation',
+        'type': 'type',
+        'created': 'created',
+        'updated': 'updated',
+    }
 
     def list(self, request):
         """
