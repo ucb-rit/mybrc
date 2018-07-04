@@ -80,7 +80,7 @@ Failure (401 Unauthorized):
 
 ### GET    /jobs?startdate={date}                ISO_date_utc
 
-### GET    /jobs?stopdate={date}                ISO_date_utc
+### GET    /jobs?enddate={date}                ISO_date_utc
 
 ### GET    /jobs?created={date}                ISO_date_utc
 
@@ -432,7 +432,7 @@ Failure (401 Unauthorized):
 
 ### GET    /users?accountid={id}                int
 
-### GET    /users?saviousername={name}        string (fuzzy)
+### GET    /users?saviousername={name}        string
 
 ### GET    /users?email={email}                string
 
@@ -674,8 +674,6 @@ X-Frame-Options: SAMEORIGIN
 }
 ```
 
-**TODO: Find out why the current implementation returns full Account objects instead of just the `accountid`.**
-
 **TODO: Add a `"success": true` field to this response.**
 
 Failure (401 Unauthorized):
@@ -689,23 +687,13 @@ Failure (401 Unauthorized):
 
 ---
 
-### GET    /accounts?uid={id}                int
-
-### GET    /accounts?friendlyname={name}        string (fuzzy)
-
-### GET    /accounts?username={name}            string
+### GET    /accounts?userid={userid}            int
 
 ### GET    /accounts?accountname={name}        string
 
-### GET    /accounts?accountfuzzyname={name}    string (fuzzy)
-
-### GET    /accounts?minbalance={amount_su_%}    float
-
-### GET    /accounts?maxbalance={amount_su_%}    float
-
-### GET    /accounts?isactive={boolean}            boolean
-
 ### GET    /accounts?allocation={allocation}        int
+
+### GET    /accounts?type={type}                string
 
 ### GET    /accounts?created={date}            ISO_date_utc
 
@@ -715,7 +703,7 @@ Same behavior as for jobs.
 
 ---
 
-### GET    /accounts/{aid}                int
+### GET    /accounts/{accountid}                int
 
 Success (200 OK):
 
