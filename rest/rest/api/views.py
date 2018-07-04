@@ -110,12 +110,11 @@ class AccountViewSet(viewsets.ModelViewSet):
         """
         List Accounts.
         """
-        queryset = self.queryset
+        queryset = self.get_queryset().values_list("accountid", flat=True)
 
         page = self.paginate_queryset(queryset)
         if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
+            return self.get_paginated_response({'accountid': page})
 
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
@@ -125,7 +124,7 @@ class AccountViewSet(viewsets.ModelViewSet):
         Get one Account.
         """
 
-        queryset = Account.objects.all()
+        queryset = self.queryset
         account = get_object_or_404(queryset, pk=pk)
         serializer = AccountSerializer(account)
         return Response(serializer.data)
