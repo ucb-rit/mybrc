@@ -255,7 +255,7 @@ Failure (401 Unauthorized):
 }
 ```
 
-### POST    /jobs
+### OPTIONS    /jobs
 
 <pre>
 [benjaminzhang@phoenix ~]$ curl -i -X OPTIONS "http://128.3.7.72:8111/jobs/"
@@ -561,7 +561,7 @@ Failure (401 Unauthorized):
 }
 ```
 
-### POST    /users
+### OPTIONS    /users
 
 <pre>
 [benjaminzhang@phoenix ~]$ curl -i -X OPTIONS "http://128.3.7.72:8111/users/"
@@ -647,8 +647,6 @@ X-Frame-Options: SAMEORIGIN
 </pre>
 
 Required values bolded.
-
-Returns 200 OK, 400 Bad Request (Invalid information), or 401 Unauthorized
 
 ## Accounts Class (Create-Read-Update-List)
 
@@ -821,7 +819,7 @@ Failure (401 Unauthorized):
 }
 ```
 
-### POST    /accounts
+### OPTIONS    /accounts
 
 <pre>
 [benjaminzhang@phoenix ~]$ curl -i -X OPTIONS "http://128.3.7.72:8111/accounts/"                                                                                                                            
@@ -915,8 +913,6 @@ X-Frame-Options: SAMEORIGIN
 </pre>
 
 Required values bolded.
-
-Returns 200 OK, 400 Bad Request (Invalid information), or 401 Unauthorized
 
 # Authentication
 
