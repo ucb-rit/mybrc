@@ -86,20 +86,28 @@ Failure (401 Unauthorized):
 
 ### GET    /jobs?updated={date}                ISO_date_utc
 
-**Note: filtering with these parameters hasn't been implemented yet. These examples are taken from the doc "REST API Etc Info (Outdated)".**
-
 Success (200 OK):
 ```
+> curl -i "http://localhost:8181/jobs/?status=1"
+
+HTTP/1.0 200 OK
+Date: Wed, 11 Jul 2018 22:00:25 GMT
+Server: WSGIServer/0.2 CPython/3.5.2
+Allow: GET, POST, HEAD, OPTIONS
+Vary: Accept, Cookie
+Content-Length: 492
+Content-Type: application/json
+X-Frame-Options: SAMEORIGIN
+
 {
-    success : true,
-    _metadata: {
-        page : 1, paginationcurrent : 100 ,paginationmax : 1000
-    },
-    jobs : [{id : 100}, {id : 5123}]
+    "count":43218,
+    "next":"http://localhost:8181/jobs/?page=2&status=1",
+    "previous":null,
+    "results":{
+        "jobnumber":[16,17,27,28,55,56,64,65,68,69,79,80,88,89,94,95,98,99,102,103,104,105,116,117,124,125,132,133,134,135,146,147,154,155,164,165,183,184,191,192,194,195,199,200,211,212,213,214,222,223,228,229,233,234,238,239,242,243,278,279,293,294,297,298,308,309,316,317,326,327,328,329,333,334,349,350,365,366,392,393,395,396,399,400,402,403,406,407,413,414,428,429,432,433,438,439,440,441,448,449]
+    }
 }
 ```
-
-The `_metadata` field is questionable--pagination was overriden in the existing implementation, so instead of `_metadata` the query response will probably have the `next` and `previous` fields found in the `/jobs` endpoint in production.
 
 Failure (400 Bad Request):
 
