@@ -380,6 +380,55 @@ X-Frame-Options: SAMEORIGIN
 
 Required values bolded.
 
+### POST    /jobs
+
+Success (201 Created):
+
+```
+> cat test.json
+
+{
+	"jobslurmid": 9999,
+	"submitdate": "2017-07-18T08:39:29Z",
+	"userid": 1,
+	"accountid": 1,
+	"amount": 70.0,
+	"jobstatus": 1,
+	"partition": 1,
+	"qos": 1
+}
+
+
+> curl -H "Content-Type: application/json" --data @test.json http://localhost:8181/jobs/
+
+HTTP/1.0 201 Created
+Date: Wed, 11 Jul 2018 22:43:43 GMT
+Server: WSGIServer/0.2 CPython/3.5.2
+Allow: GET, POST, HEAD, OPTIONS
+Vary: Accept, Cookie
+Content-Length: 261
+Content-Type: application/json
+X-Frame-Options: SAMEORIGIN
+
+{
+    "jobnumber": 171612,
+    "jobslurmid": 9999,
+    "submitdate": "2017-07-18T08:39:29Z",
+    "startdate": null,
+    "enddate": null,
+    "userid": 1,
+    "accountid": 1,
+    "amount": 70,
+    "jobstatus": 1,
+    "partition": 1,
+    "qos": 1,
+    "created": "2018-07-11T22:41:06.607197Z",
+    "updated": "2018-07-11T22:41:06.607449Z"
+}
+```
+
+**TODO: need to test if invalid users, accounts, or a combination of the two get validated. If so, need to add validations for those.**
+
 ## Users Class (Create-Read-Update-List)
 
 ### GET    /users
@@ -648,6 +697,44 @@ X-Frame-Options: SAMEORIGIN
 
 Required values bolded.
 
+### POST    /users
+
+Success (201 Created):
+
+```
+> cat test.json 
+
+{
+        "username": "foo",
+        "usermetadata": "bar",
+        "email": "caligirlxoxo@hotmail.com",
+        "ldapuid": 2
+}
+
+
+> curl -i -H "Content-Type: application/json" --data @test.json http://localhost:8181/users/
+
+HTTP/1.0 201 Created
+Date: Mon, 16 Jul 2018 23:34:48 GMT
+Server: WSGIServer/0.2 CPython/3.5.2
+Content-Type: application/json
+X-Frame-Options: SAMEORIGIN
+Allow: GET, POST, HEAD, OPTIONS
+Content-Length: 192
+Vary: Accept, Cookie
+
+{
+    "accounts": [],
+    "userid": 17,
+    "username": "foo",
+    "usermetadata": "bar",
+    "email": "caligirlxoxo@hotmail.com",
+    "ldapuid": 2,
+    "created": "2018-07-16T23:34:48.976376Z",
+    "updated": "2018-07-16T23:34:48.978006Z"
+}
+```
+
 ## Accounts Class (Create-Read-Update-List)
 
 ### GET    /accounts
@@ -914,14 +1001,60 @@ X-Frame-Options: SAMEORIGIN
 
 Required values bolded.
 
+### POST    /accounts
+
+Success (201 Created):
+
+```
+> cat test.json 
+
+{
+        "accountname": "foo",
+        "accountallocation": 1,
+        "accountbalance": 0,
+        "type": "yes",
+        "description": "no"
+}
+
+
+> curl -i -H "Content-Type: application/json" --data @test.json http://localhost:8181/accounts/
+
+HTTP/1.0 201 Created
+Date: Mon, 16 Jul 2018 23:54:20 GMT
+Server: WSGIServer/0.2 CPython/3.5.2
+Content-Type: application/json
+X-Frame-Options: SAMEORIGIN
+Allow: GET, POST, HEAD, OPTIONS
+Content-Length: 199
+Vary: Accept, Cookie
+
+{
+    "accountid": 6,
+    "users": [],
+    "accountname": "foo",
+    "accountallocation": 1,
+    "accountbalance": 0,
+    "type": "yes",
+    "description": "no",
+    "created": "2018-07-16T23:54:20.820149Z",
+    "updated": "2018-07-16T23:54:20.820955Z"
+}
+```
+
 # Authentication
 
-Use OAuth 2 path to authenticate the client. (To be implemented)
+Use CAS to authenticate the client. (To be implemented)
+
+TODO:
+* Might need to change the User model to inherit the Django AbstractBaseUser
+* Create custom auth backend for CAS proxy ticket verification
+* Figure out what to do for the SLURM plugin's user. Basic/token auth? Can't use CAS.
 
 # TODO List
 
 * Add "success" fields to responses.
-* Implement filtering.
 * Do everything else.
 * Catch invalid syntax errors and return a 404.
 * Implement all `400 Bad Request` responses.
+* Does anything get validated?
+* POST for users and accounts: https://stackoverflow.com/questions/49633926/how-to-post-model-with-many-to-many-through-in-django-rest
