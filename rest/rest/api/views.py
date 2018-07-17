@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from .models import *
-from .serializers import UserSerializer, AccountSerializer, JobSerializer
+from .serializers import UserSerializer, AccountSerializer, JobSerializer, UserAccountSerializer
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import mixins
@@ -132,4 +132,41 @@ class AccountViewSet(FiltersMixin, viewsets.ModelViewSet):
         queryset = self.queryset
         account = get_object_or_404(queryset, pk=pk)
         serializer = AccountSerializer(account)
+        return Response(serializer.data)
+
+class UserAccountAssociationViewSet(FiltersMixin, viewsets.ModelViewSet):
+    """
+    ViewSet for /api/useraccountassociations/
+    """
+    queryset = Useraccountassociation.objects.all()
+    serializer_class = UserAccountSerializer
+
+    filter_mappings = {
+        'userid': 'userid',
+        'accountid': 'accountid',
+        'created': 'created',
+        'updated': 'updated',
+    }
+
+    def list(self, request):
+        """
+        List UserAccountAssociations.
+        """
+        queryset = self.get_queryset().values_list("useraccountassociationid", flat=True)
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            return self.get_paginated_response({'useraccountassociationid': page})
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        """
+        Get one UserAccountAssociation.
+        """
+
+        queryset = self.queryset
+        account = get_object_or_404(queryset, pk=pk)
+        serializer = UserAccountSerializer(account)
         return Response(serializer.data)

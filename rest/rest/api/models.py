@@ -164,7 +164,7 @@ class User(models.Model):
 
 
 class Useraccountassociation(models.Model):
-    associationid = models.AutoField(db_column='id', primary_key=True)
+    useraccountassociationid = models.AutoField(db_column='id', primary_key=True)
     userid = models.ForeignKey(User, db_column='UserID')
     accountid = models.ForeignKey(Account, db_column='AccountID')
     userallocation = models.IntegerField(db_column='UserAllocation')  # Field name made lowercase.
