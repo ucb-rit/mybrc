@@ -1041,6 +1041,210 @@ Vary: Accept, Cookie
 }
 ```
 
+## User-Account Associations Class (Read-Update-List)
+
+**TODO: Should we be able to create/delete associations? Part of more general mirroring question.**
+
+### GET     /useraccountassociations
+
+Success (200 OK):
+
+```
+> curl -i "http://localhost:8181/useraccountassociations/"
+
+HTTP/1.0 200 OK
+Date: Tue, 17 Jul 2018 00:30:26 GMT
+Server: WSGIServer/0.2 CPython/3.5.2
+Vary: Accept, Cookie
+Content-Length: 92
+Allow: GET, POST, HEAD, OPTIONS
+X-Frame-Options: SAMEORIGIN
+Content-Type: application/json
+
+{
+    "count": 6,
+    "next": null,
+    "previous": null,
+    "results": {
+        "useraccountassociationid": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ]
+    }
+}
+```
+
+---
+
+### GET     /useraccountassociations?userid={userid}    string
+
+### GET     /useraccountassociations?userid={userid}    string
+
+### GET     /useraccountassociations?created={date}    ISO_date_utc
+
+### GET     /useraccountassociations?updated={date}    ISO_date_utc
+
+If you want to get an association for a single user-account pair, chain `userid` and `accountid` filtering together with an `&`:
+
+```
+)> curl -i "http://localhost:8181/useraccountassociations/?userid=1&accountid=1"
+
+HTTP/1.0 200 OK
+Date: Tue, 17 Jul 2018 00:33:14 GMT
+Server: WSGIServer/0.2 CPython/3.5.2
+Vary: Accept, Cookie
+Content-Length: 82
+Allow: GET, POST, HEAD, OPTIONS
+X-Frame-Options: SAMEORIGIN
+Content-Type: application/json
+
+{
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": {
+        "useraccountassociationid": [
+            1
+        ]
+    }
+}
+```
+
+---
+
+### GET     /useraccountassociations/{id}   int
+
+Success (200 OK):
+
+```
+> curl -i "http://localhost:8181/useraccountassociations/1/"
+
+HTTP/1.0 200 OK
+Date: Tue, 17 Jul 2018 00:34:37 GMT
+Server: WSGIServer/0.2 CPython/3.5.2
+Vary: Accept, Cookie
+Content-Length: 137
+Allow: GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+X-Frame-Options: SAMEORIGIN
+Content-Type: application/json
+
+{
+    "userid": 1,
+    "accountid": 1,
+    "userallocation": 500000,
+    "userbalance": 250000,
+    "created": "2018-06-05T14:22:19Z",
+    "updated": "2018-06-05T14:22:19Z"
+}
+```
+
+---
+
+### PATCH   /useraccountassociations/{id}   int
+
+Success (200 OK):
+
+```
+> curl -i -X PATCH -d userbalance=0 "http://localhost:8181/useraccountassociations/1/"
+
+HTTP/1.0 200 OK
+Date: Tue, 17 Jul 2018 00:38:09 GMT
+Server: WSGIServer/0.2 CPython/3.5.2
+Vary: Accept, Cookie
+Content-Length: 132
+Allow: GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+X-Frame-Options: SAMEORIGIN
+Content-Type: application/json
+
+{
+    "userid": 1,
+    "accountid": 1,
+    "userallocation": 500000,
+    "userbalance": 0,
+    "created": "2018-06-05T14:22:19Z",
+    "updated": "2018-06-05T14:22:19Z"
+}
+```
+
+---
+
+### OPTIONS     /useraccountassociations
+
+<pre>
+> curl -i -X OPTIONS "http://localhost:8181/useraccountassociations/"
+
+HTTP/1.0 200 OK
+Date: Tue, 17 Jul 2018 00:40:06 GMT
+Server: WSGIServer/0.2 CPython/3.5.2
+Vary: Accept, Cookie
+Content-Length: 852
+Allow: GET, POST, HEAD, OPTIONS
+X-Frame-Options: SAMEORIGIN
+Content-Type: application/json
+
+{
+    "name": "User Account Association List",
+    "description": "ViewSet for /api/useraccountassociations/",
+    "renders": [
+        "application/json",
+        "text/html"
+    ],
+    "parses": [
+        "application/json",
+        "application/x-www-form-urlencoded",
+        "multipart/form-data"
+    ],
+    "actions": {
+        "POST": {
+            <b>"userid": {
+                "type": "field",
+                "required": true,
+                "read_only": false,
+                "label": "Userid"
+            },
+            "accountid": {
+                "type": "field",
+                "required": true,
+                "read_only": false,
+                "label": "Accountid"
+            },
+            "userallocation": {
+                "type": "integer",
+                "required": true,
+                "read_only": false,
+                "label": "Userallocation",
+                "min_value": -2147483648,
+                "max_value": 2147483647
+            },
+            "userbalance": {
+                "type": "integer",
+                "required": true,
+                "read_only": false,
+                "label": "Userbalance",
+                "min_value": -2147483648,
+                "max_value": 2147483647
+            },</b>
+            "created": {
+                "type": "datetime",
+                "required": false,
+                "read_only": true,
+                "label": "Created"
+            },
+            "updated": {
+                "type": "datetime",
+                "required": false,
+                "read_only": true,
+                "label": "Updated"
+            }
+        }
+    }
+}
+</pre>
+
 # Authentication
 
 Use CAS to authenticate the client. (To be implemented)
@@ -1053,7 +1257,7 @@ TODO:
 # TODO List
 
 * Add "success" fields to responses.
-* Do everything else.
+* Make the `updated` field update when something is changed.
 * Catch invalid syntax errors and return a 404.
 * Implement all `400 Bad Request` responses.
 * Does anything get validated?
