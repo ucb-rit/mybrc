@@ -28,7 +28,7 @@ CREATE TABLE `UserAccountAssociation` (
 	`AccountID` int NOT NULL,
 	FOREIGN KEY (`UserID`) REFERENCES User(`UserID`),
 	FOREIGN KEY (`AccountID`) REFERENCES `Account`(`AccountID`),
-	`id` int NOT NULL AUTO_INCREMENT,
+	`id` int NOT NULL AUTO_INCREMENT UNIQUE,
 	`UserAllocation` int NOT NULL,
 	`UserBalance` int NOT NULL,
 	`Created` timestamp DEFAULT '0000-00-00 00:00:00', 
