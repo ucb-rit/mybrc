@@ -25,7 +25,6 @@ class Account(models.Model):
     updated = models.DateTimeField(auto_now_add=True, db_column='Updated')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'Account'
 
 
@@ -40,7 +39,6 @@ class Accounttransaction(models.Model):
     updated = models.DateTimeField(auto_now_add=True, db_column='Updated')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'AccountTransaction'
 
 
@@ -60,7 +58,6 @@ class Job(models.Model):
     updated = models.DateTimeField(auto_now_add=True, db_column='Updated')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'Job'
 
 
@@ -71,7 +68,6 @@ class Jobstatusdict(models.Model):
     updated = models.DateTimeField(auto_now_add=True, db_column='Updated')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'JobStatusDict'
 
 
@@ -82,7 +78,6 @@ class Partitiondict(models.Model):
     updated = models.DateTimeField(auto_now_add=True, db_column='Updated')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'PartitionDict'
 
 
@@ -93,7 +88,6 @@ class Permdict(models.Model):
     updated = models.DateTimeField(auto_now_add=True, db_column='Updated')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'PermDict'
 
 
@@ -104,7 +98,6 @@ class Qosdict(models.Model):
     updated = models.DateTimeField(auto_now_add=True, db_column='Updated')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'QOSDict'
 
 
@@ -116,7 +109,6 @@ class Role(models.Model):
     updated = models.DateTimeField(auto_now_add=True, db_column='Updated')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'Role'
         unique_together = (('accountid', 'userid'),)
 
@@ -128,7 +120,6 @@ class Roledict(models.Model):
     updated = models.DateTimeField(auto_now_add=True, db_column='Updated')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'RoleDict'
 
 
@@ -140,7 +131,6 @@ class Superuser(models.Model):
     updated = models.DateTimeField(auto_now_add=True, db_column='Updated')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'SuperUser'
 
 
@@ -155,11 +145,11 @@ class User(models.Model):
     usermetadata = models.TextField(db_column='UserMetadata')  # Field name made lowercase.
     email = models.CharField(db_column='Email', max_length=100)  # Field name made lowercase.
     ldapuid = models.IntegerField(db_column='LDAPUID')  # Field name made lowercase.
+    calnetuid = models.IntegerField(db_column='CalNetUID')
     created = models.DateTimeField(auto_now_add=True, db_column='Created')  # Field name made lowercase.
     updated = models.DateTimeField(auto_now_add=True, db_column='Updated')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'User'
 
 
@@ -173,6 +163,5 @@ class Useraccountassociation(models.Model):
     updated = models.DateTimeField(auto_now_add=True, db_column='Updated')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'UserAccountAssociation'
         unique_together = (('userid', 'accountid'),)
