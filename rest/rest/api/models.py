@@ -7,7 +7,9 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from __future__ import unicode_literals
 
-from django.db import models 
+from django.db import models
+from django.contrib.auth.models import AbstractBaseUser
+
 
 class Account(models.Model):
     accountid = models.AutoField(db_column='AccountID', primary_key=True)  # Field name made lowercase.
@@ -134,20 +136,26 @@ class Superuser(models.Model):
         db_table = 'SuperUser'
 
 
-class User(models.Model):
+class User(AbstractBaseUser):
     userid = models.AutoField(db_column='UserID', primary_key=True)  # Field name made lowercase.
     accounts = models.ManyToManyField(
         'Account',
         through='Useraccountassociation',
         through_fields=('userid', 'accountid')
     )
-    username = models.CharField(db_column='UserName', max_length=20)  # Field name made lowercase.
+    username = models.CharField(db_column='UserName', max_length=20, unique=True)  # Field name made lowercase.
     usermetadata = models.TextField(db_column='UserMetadata')  # Field name made lowercase.
     email = models.CharField(db_column='Email', max_length=100)  # Field name made lowercase.
     ldapuid = models.IntegerField(db_column='LDAPUID')  # Field name made lowercase.
-    calnetuid = models.IntegerField(db_column='CalNetUID')
     created = models.DateTimeField(auto_now_add=True, db_column='Created')  # Field name made lowercase.
     updated = models.DateTimeField(auto_now_add=True, db_column='Updated')  # Field name made lowercase.
+
+    # Required fields for AbstractBaseUser
+    USERNAME_FIELD = 'username'
+    EMAIL_FIELD = 'email'
+    REQUIRED_FIELDS = ['username, calnetuid']
+
+    # Calnet UID is the 'password' field of the User.
 
     class Meta:
         db_table = 'User'
