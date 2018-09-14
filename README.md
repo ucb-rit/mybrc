@@ -10,8 +10,15 @@ Main components include:
 
 ## 1. Dashboard 
 
-Contains code for Frontend of Django web app. 
+Contains code for Frontend of Django web app. Within Docker container for development and production. Docker container uses **docker compose** for ease of use. 
 
+#### Development mode 
+
+Uses <code>requirements/development.txt</code> and launches with:
+
+```
+    $ docker-compose up
+```
 
 #### How to run 
 
@@ -24,10 +31,6 @@ May first need to migrate new changes for Django
 ```
     $ python manage.py migrate 
 ```
-
-#### To Do 
-
-Create <b>services.py</b> and <b>views.py</b> for each page. Will be located within each dir - <i>e.g. su_calculator/</i>.
 
 ## 2. RESTful API + SQL
 
