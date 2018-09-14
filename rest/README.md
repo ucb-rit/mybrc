@@ -1249,10 +1249,15 @@ Content-Type: application/json
 
 Use CAS to authenticate the client. (To be implemented)
 
+## CAS Proxy Authentication
+
+Include headers `proxyTicket` and `savio_username` in request.
+
 TODO:
 * Might need to change the User model to inherit the Django AbstractBaseUser
 * Create custom auth backend for CAS proxy ticket verification
 * Figure out what to do for the SLURM plugin's user. Basic/token auth? Can't use CAS.
+* Make block architecture diagram, high-level roadmap for project.
 
 # TODO List
 
