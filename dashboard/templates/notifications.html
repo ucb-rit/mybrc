@@ -6,42 +6,104 @@
 {% endblock %}
 
 {% block body %}
-	<div id="your-notif">
-		<div class="list-group" id="le-message">
-			<a href="#" class="list-group-item" id="notif-header">
-			<p class="list-group-item-heading" id="header-yn">Your Notifications</p></a>
-			{% if messages %}
-				{% for m in messages %}
-					<a href="#" class="list-group-item">
-					<p{% if m.tags %} class="list-group-item-heading" {% endif %}> {{ m }}</p>
-					<p class="list-group-item-text">Display date</p></a>
-				{% endfor %}
-			{% endif %}
+	<div class="container">
+		<div class="row">
+			<h2 style="margin-left: 150px">{{ the_title }}</h2>
+		</div>
+		<div class="row">
+			<div class="col-md-8">
+				{% if acc_perc == 0 %}
+					<div class="alert alert-warning alert-dismissible" style="margin-left: 140px">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close" style="top: 4px">&times;</a>
+						<h5><strong>Warning:</strong> account balance is {{ acc_perc }}%</h5>
+					</div>
+					<!--div class="panel panel-default" style="margin-left: 140px;">
+						<div class="panel-body" style="text-align: center; background-color: rgba(109, 109, 109, 0.253);">
+							<h4 style="padding-left: 0px">Warning: account balance is {{ acc_perc }}</h4>
+						</div>
+					</div-->
+				{% elif bad_submit == "true" %}
+					<div class="alert alert-danger alert-dismissible" style="margin-left: 140px">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close" style="top: 4px">&times;</a>
+						<h5><strong>Error:</strong> {{ bad_message }}</h5>
+					</div>
+					<!--div class="panel panel-default" style="margin-left: 140px;">
+						<div class="panel-body" style="text-align: center; background-color: rgba(109, 109, 109, 0.253);">
+							<h4 style="padding-left: 0px">Error: Please enter a valid account</h4>
+						</div>
+					</div-->
+				{% endif %} 
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<div id="your-notif">
+					<div class="list-group le-message">
+						<a href="#" class="list-group-item" id="le-message-left">
+						<p class="list-group-item-heading" id="header-yn"><b>Your Notifications</b></p></a>
+						{% if messages %}
+						<!--p>acc_id = m['acc_id'] 
+						acc_time = m['acc_time'] </p-->
+						<a href="#" class="list-group-item" id="le-message-left-low">
+						<!--p{% if m.tags %} class="list-group-item-heading" {% endif %}> Display count: {{ acc_id }}</p>
+						<p class="list-group-item-text">Display date: {{ acc_time }}</p></a-->
+						<p class="list-group-item-text">Account ID: <b id="i_acc_id">{{ acc_id }}</b></p>
+						<p class="list-group-item-text">Account name: <b id="i_acc_name">{{ acc_name }}</b></p>
+						<p class="list-group-item-text">Date updated: <b id="i_acc_date">{{ acc_time }}</b></p></a>
+						{% else %}
+							<a href="#" class="list-group-item">
+								<h5>No user account information available</h5>
+							</a>
+						{% endif %}
+					</div>
+				</div>
+				<div style="height: 100px;"></div>
+			</div>
+			<div class="col-md-4">
+				<div id="account-notif">
+					<div class="list-group le-message">
+						<a href="#" class="list-group-item" id="le-message-right">
+						<p class="list-group-item-heading" id="header-yn"><b>Account Notifications</b></p></a>
+						<a href="#" class="list-group-item" id="le-message-right-low">
+							<p class="list-group-item-heading">Project description: <b id="i_acc_desc">{{ acc_desc }}</b></p>
+							<div style="height: 30px;"></div>
+							<p class="list-group-item-heading">Account allocation: <b id="i_acc_alloc">{{ acc_alloc }}</b></p>
+							<p class="list-group-item-heading">Account balance: <b id="i_acc_balance">{{ acc_balance }}</b></p>
+							<div class="row" id="acc-warnings" style="display: none">
+								<div style="height: 50px"></div>
+								<div class="col-md-12 center-block">
+									<button style="display: none" id="acc_warning_btn" type="button" class="btn btn-warning center-block">Warning: <b id="acc_low"></b><b>%</b> of balance remaining.</button>
+									<button style="display: none" id="acc_out_btn" type="button" class="btn btn-danger center-block">Warning: Account is empty.</button>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-8">
+				<div class="panel panel-default" id="bad-acc-btn" style="display: none; margin-left: 140px;">
+					<div class="panel-body" style="text-align: center;">
+						<h3 style="padding-left: 0px">Please enter a valid account</h3>
+					</div>
+				</div>
+				<div class="le-message">
+					<h4>Search for an account:</h4>
+					<div style="height: 30px;"></div>
+					<form action="" method="get">
+						<input type="text" name="search_account" value="" id="acc_search_form">
+						<input class="btn btn-primary" type="submit" value="search">
+					</form>
+				</div>
+			</div>
+			<div class="col-md-4"></div>
 		</div>
 	</div>
-
-	<div id="account-notif">
-		<div class="list-group" id="le-message">
-			<a href="#" class="list-group-item" id="notif-header">
-			<p class="list-group-item-heading" id="header-yn">Account Notifications</p></a>
-		</div>
-	</div>
-
-<!--
-<div class=bs-example data-example-id=list-group-custom-content>
-	<div class=list-group>
-		<a href=# class="list-group-item active"> 
-			<h4 class=list-group-item-heading>List group item heading</h4> 
-			<p class=list-group-item-text>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p> </a> 
-
-			<a href=# class=list-group-item> 
-				<h4 class=list-group-item-heading>List group item heading</h4> 
-				<p class=list-group-item-text>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p> </a> 
-
-			<a href=# class=list-group-item> 
-				<h4 class=list-group-item-heading>List group item heading</h4> 
-				<p class=list-group-item-text>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p> </a> 
-			</div> 
-		</div> -->
-
+	<script type="text/javascript">
+        // FIXME: remove logs in prod mode
+		var check_submit = {{ bad_submit }};
+		console.log("check_submit: ", check_submit);
+	</script>
 {% endblock %}

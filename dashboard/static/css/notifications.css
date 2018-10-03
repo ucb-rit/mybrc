@@ -2,10 +2,10 @@ h3 {
 	padding-left: 250px;
 }
 
-#le-message {
-	height: 50px;
+.le-message {
+	/*height: 50px;*/
 	width: 300px;
-	margin-left: 200px;
+	margin-left: 120px;
 	padding-top: 10px;
 	padding-left: 20px;
 }

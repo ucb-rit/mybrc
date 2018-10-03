@@ -1,0 +1,49 @@
+{
+    "count": 3,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "accountid": 1,
+            "users": [
+                1,
+                4
+            ],
+            "accountname": "fc_hasan",
+            "accountallocation": 1000000,
+            "accountbalance": 1000000,
+            "type": "FCA",
+            "description": "Research of potatoes",
+            "created": "2017-11-18T20:39:16Z",
+            "updated": "2017-11-18T20:39:16Z"
+        },
+        {
+            "accountid": 2,
+            "users": [
+                2
+            ],
+            "accountname": "fc_kuoh",
+            "accountallocation": 300000,
+            "accountbalance": 300000,
+            "type": "FCA",
+            "description": "Research of renderers",
+            "created": "2017-11-18T20:39:16Z",
+            "updated": "2017-11-18T20:39:16Z"
+        },
+        {
+            "accountid": 3,
+            "users": [
+                1,
+                2,
+                3
+            ],
+            "accountname": "co_ocf",
+            "accountallocation": -1,
+            "accountbalance": -1,
+            "type": "Condo",
+            "description": "Whatever the hell they feel like",
+            "created": "2017-11-18T20:39:16Z",
+            "updated": "2017-11-18T20:39:16Z"
+        }
+    ]
+}

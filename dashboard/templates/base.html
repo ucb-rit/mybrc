@@ -6,9 +6,9 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 	    <meta name="description" content="Notification Center">
-	    <meta name="author" content="Cassie Zhang">
+	    <meta name="author" content="Oliver Muellerklein">
 
-		<title>{{ theTitle }}</title>
+		<title>{{ the_title }}</title>
 		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 		<link rel="stylesheet" href="{% static 'css/bootstrap-theme.css' %}">
 		<link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css">
@@ -179,7 +179,10 @@
 		<div id="thetitle"><h2>{{ theTitle }} </h2> </div>
 
 		<div>
-	        {% block body %}
+			{% block body %}
+				<!--div class="row">
+					<h2 style="margin-left: 150px">{{ the_title }}</h2>
+				</div-->
             {% endblock %}
 		</div>
 
@@ -188,11 +191,21 @@
 		function openNav() {
 			document.getElementById("id-admin-side").style.width = "350px";
 			document.body.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+			document.getElementById("le-message-left").style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+			document.getElementById("le-message-left-low").style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+			document.getElementById("le-message-right").style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+			document.getElementById("le-message-right-low").style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+			document.getElementById("acc_search_form").style.backgroundColor = "rgba(0, 0, 0, 0.2)";
 		}
 
 		function closeNav() {
 			document.getElementById("id-admin-side").style.width = "0";
 			document.body.style.backgroundColor = "white";
+			document.getElementById("le-message-left").style.backgroundColor = "white";
+			document.getElementById("le-message-left-low").style.backgroundColor = "white";
+			document.getElementById("le-message-right").style.backgroundColor = "white";
+			document.getElementById("le-message-right-low").style.backgroundColor = "white";
+			document.getElementById("acc_search_form").style.backgroundColor = "white";
 		}
 
 		$(document).ready(function(){
