@@ -31,16 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'login',
-    'menu',
-    'notifications',
-    'personal_statistics',
-    'account_statistics',
-    'job_history',
-    'quota_manager',
-    'su_calculator',
-    'faqs',
-    'settings',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

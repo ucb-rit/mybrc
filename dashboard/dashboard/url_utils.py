@@ -1,6 +1,6 @@
-import json
 import os, os.path, json
 import requests
+
 """
     Utility functions for getting data to views.
 """

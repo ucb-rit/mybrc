@@ -2,3 +2,6 @@
 # Except this file
 !.gitignore
 .DS_Store
+.vscode/
+*.pyc
+.pyc

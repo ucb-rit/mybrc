@@ -18,9 +18,16 @@ from django.urls import path
 from dashboard import views
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('login/', views.login, name='login'),
-    path('notifications/', views.notifications, name='notifications'),
-    path('job-history/', views.job_history, name='job_history'),
+    path('account_statistics/', views.account_statistics, name='account_statistics'),
     path('admin/', admin.site.urls),
+    path('faqs', views.faqs, name='faqs'),
+    path('', views.home, name='home'),
+    path('job-history/', views.job_history, name='job_history'),
+    path('json-example/', views.json_example, name='json_example'),
+    path('json-example/data/', views.chart_data, name='chart_data'),
+    path('login/', views.login, name='login'),
+    path('menu/', views.menu, name='menu'),
+    path('notifications/', views.notifications, name='notifications'),
+    path('settings/', views.settings, name='settings'),
+    path('su-calculator', views.su_calculator, name='su_calculator'),
 ]
