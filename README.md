@@ -1,17 +1,25 @@
 # mybrc
 
-Reposiroty to hold all the code developed by interns for the myBRC dashboard project and all its associated components like SLURM plugin.
+FIXME: fill in better description of this project
 
 Main components include:
 	1. Dashboard code
 	2. RESTful service to SLURM data in the external Database
 	3. SLURM plugin code
 
-
 ## 1. Dashboard 
 
-Contains code for Frontend of Django web app. 
+Contains code for Frontend of Django web app.
 
+## Screenshots of Development
+
+**The left menu bar:**
+
+![](imgs/savio_dash_menu.png)
+
+**Local server running the application:**
+
+![](imgs/savio_dash_server.png)
 
 #### Set up local configuration 
 
