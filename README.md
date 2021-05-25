@@ -1,4 +1,4 @@
-# mybrc
+# mybrc (This is the not the repo for the ColdFront based MyBRC User portal).
 
 FIXME: fill in better description of this project
 
