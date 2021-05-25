@@ -1,4 +1,4 @@
-Django==1.11.4
+Django==1.11.29
 django-filter==1.1.0
 djangorestframework==3.6.3
 drf-url-filters==0.5.1
